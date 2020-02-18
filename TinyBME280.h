@@ -9,7 +9,15 @@
 
 #include <stdint.h>
 #include <Arduino.h>
-#include <Wire.h>
+
+// to get it working with LiquidCrystal_I2C library
+#define defined_ATtiny (defined(__AVR_ATtiny45__) || defined(__AVR_ATtiny85__) || defined(__AVR_ATtiny84__))
+#if defined_ATtiny
+  #include "TinyWireM.h"
+  #define Wire TinyWireM
+#else
+  #include <Wire.h>
+#endif
 
 #ifndef TINYBME280
 #define TINYBME280
